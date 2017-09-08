@@ -1,0 +1,530 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11F824CD1F6310E5007751F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824CC1F6310E5007751F1 /* AppDelegate.swift */; };
+		11F824CF1F6310E5007751F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824CE1F6310E5007751F1 /* ViewController.swift */; };
+		11F824D21F6310E5007751F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F824D01F6310E5007751F1 /* Main.storyboard */; };
+		11F824D41F6310E5007751F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11F824D31F6310E5007751F1 /* Assets.xcassets */; };
+		11F824D71F6310E5007751F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F824D51F6310E5007751F1 /* LaunchScreen.storyboard */; };
+		11F824E21F6310E5007751F1 /* Tournament_ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824E11F6310E5007751F1 /* Tournament_ManagerTests.swift */; };
+		11F824ED1F6310E5007751F1 /* Tournament_ManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824EC1F6310E5007751F1 /* Tournament_ManagerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		11F824DE1F6310E5007751F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11F824C11F6310E5007751F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11F824C81F6310E5007751F1;
+			remoteInfo = "Tournament Manager";
+		};
+		11F824E91F6310E5007751F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11F824C11F6310E5007751F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11F824C81F6310E5007751F1;
+			remoteInfo = "Tournament Manager";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		11F824C91F6310E5007751F1 /* Tournament Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tournament Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11F824CC1F6310E5007751F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		11F824CE1F6310E5007751F1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		11F824D11F6310E5007751F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		11F824D31F6310E5007751F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		11F824D61F6310E5007751F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		11F824D81F6310E5007751F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11F824DD1F6310E5007751F1 /* Tournament ManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tournament ManagerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11F824E11F6310E5007751F1 /* Tournament_ManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament_ManagerTests.swift; sourceTree = "<group>"; };
+		11F824E31F6310E5007751F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11F824E81F6310E5007751F1 /* Tournament ManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tournament ManagerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11F824EC1F6310E5007751F1 /* Tournament_ManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament_ManagerUITests.swift; sourceTree = "<group>"; };
+		11F824EE1F6310E5007751F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		11F824C61F6310E5007751F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11F824DA1F6310E5007751F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11F824E51F6310E5007751F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11F824C01F6310E5007751F1 = {
+			isa = PBXGroup;
+			children = (
+				11F824CB1F6310E5007751F1 /* Tournament Manager */,
+				11F824E01F6310E5007751F1 /* Tournament ManagerTests */,
+				11F824EB1F6310E5007751F1 /* Tournament ManagerUITests */,
+				11F824CA1F6310E5007751F1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		11F824CA1F6310E5007751F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11F824C91F6310E5007751F1 /* Tournament Manager.app */,
+				11F824DD1F6310E5007751F1 /* Tournament ManagerTests.xctest */,
+				11F824E81F6310E5007751F1 /* Tournament ManagerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11F824CB1F6310E5007751F1 /* Tournament Manager */ = {
+			isa = PBXGroup;
+			children = (
+				11F824CC1F6310E5007751F1 /* AppDelegate.swift */,
+				11F824CE1F6310E5007751F1 /* ViewController.swift */,
+				11F824D01F6310E5007751F1 /* Main.storyboard */,
+				11F824D31F6310E5007751F1 /* Assets.xcassets */,
+				11F824D51F6310E5007751F1 /* LaunchScreen.storyboard */,
+				11F824D81F6310E5007751F1 /* Info.plist */,
+			);
+			path = "Tournament Manager";
+			sourceTree = "<group>";
+		};
+		11F824E01F6310E5007751F1 /* Tournament ManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				11F824E11F6310E5007751F1 /* Tournament_ManagerTests.swift */,
+				11F824E31F6310E5007751F1 /* Info.plist */,
+			);
+			path = "Tournament ManagerTests";
+			sourceTree = "<group>";
+		};
+		11F824EB1F6310E5007751F1 /* Tournament ManagerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				11F824EC1F6310E5007751F1 /* Tournament_ManagerUITests.swift */,
+				11F824EE1F6310E5007751F1 /* Info.plist */,
+			);
+			path = "Tournament ManagerUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		11F824C81F6310E5007751F1 /* Tournament Manager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11F824F11F6310E5007751F1 /* Build configuration list for PBXNativeTarget "Tournament Manager" */;
+			buildPhases = (
+				11F824C51F6310E5007751F1 /* Sources */,
+				11F824C61F6310E5007751F1 /* Frameworks */,
+				11F824C71F6310E5007751F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Tournament Manager";
+			productName = "Tournament Manager";
+			productReference = 11F824C91F6310E5007751F1 /* Tournament Manager.app */;
+			productType = "com.apple.product-type.application";
+		};
+		11F824DC1F6310E5007751F1 /* Tournament ManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11F824F41F6310E5007751F1 /* Build configuration list for PBXNativeTarget "Tournament ManagerTests" */;
+			buildPhases = (
+				11F824D91F6310E5007751F1 /* Sources */,
+				11F824DA1F6310E5007751F1 /* Frameworks */,
+				11F824DB1F6310E5007751F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11F824DF1F6310E5007751F1 /* PBXTargetDependency */,
+			);
+			name = "Tournament ManagerTests";
+			productName = "Tournament ManagerTests";
+			productReference = 11F824DD1F6310E5007751F1 /* Tournament ManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		11F824E71F6310E5007751F1 /* Tournament ManagerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11F824F71F6310E5007751F1 /* Build configuration list for PBXNativeTarget "Tournament ManagerUITests" */;
+			buildPhases = (
+				11F824E41F6310E5007751F1 /* Sources */,
+				11F824E51F6310E5007751F1 /* Frameworks */,
+				11F824E61F6310E5007751F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11F824EA1F6310E5007751F1 /* PBXTargetDependency */,
+			);
+			name = "Tournament ManagerUITests";
+			productName = "Tournament ManagerUITests";
+			productReference = 11F824E81F6310E5007751F1 /* Tournament ManagerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11F824C11F6310E5007751F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Marcus Trenton";
+				TargetAttributes = {
+					11F824C81F6310E5007751F1 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+					11F824DC1F6310E5007751F1 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 11F824C81F6310E5007751F1;
+					};
+					11F824E71F6310E5007751F1 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 11F824C81F6310E5007751F1;
+					};
+				};
+			};
+			buildConfigurationList = 11F824C41F6310E5007751F1 /* Build configuration list for PBXProject "Tournament Manager" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 11F824C01F6310E5007751F1;
+			productRefGroup = 11F824CA1F6310E5007751F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				11F824C81F6310E5007751F1 /* Tournament Manager */,
+				11F824DC1F6310E5007751F1 /* Tournament ManagerTests */,
+				11F824E71F6310E5007751F1 /* Tournament ManagerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		11F824C71F6310E5007751F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11F824D71F6310E5007751F1 /* LaunchScreen.storyboard in Resources */,
+				11F824D41F6310E5007751F1 /* Assets.xcassets in Resources */,
+				11F824D21F6310E5007751F1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11F824DB1F6310E5007751F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11F824E61F6310E5007751F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		11F824C51F6310E5007751F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11F824CF1F6310E5007751F1 /* ViewController.swift in Sources */,
+				11F824CD1F6310E5007751F1 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11F824D91F6310E5007751F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11F824E21F6310E5007751F1 /* Tournament_ManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11F824E41F6310E5007751F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11F824ED1F6310E5007751F1 /* Tournament_ManagerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		11F824DF1F6310E5007751F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11F824C81F6310E5007751F1 /* Tournament Manager */;
+			targetProxy = 11F824DE1F6310E5007751F1 /* PBXContainerItemProxy */;
+		};
+		11F824EA1F6310E5007751F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11F824C81F6310E5007751F1 /* Tournament Manager */;
+			targetProxy = 11F824E91F6310E5007751F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		11F824D01F6310E5007751F1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11F824D11F6310E5007751F1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		11F824D51F6310E5007751F1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11F824D61F6310E5007751F1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		11F824EF1F6310E5007751F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		11F824F01F6310E5007751F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		11F824F21F6310E5007751F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Tournament Manager/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.marcus-trenton.Tournament-Manager";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		11F824F31F6310E5007751F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Tournament Manager/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.marcus-trenton.Tournament-Manager";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		11F824F51F6310E5007751F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Tournament ManagerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.marcus-trenton.Tournament-ManagerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tournament Manager.app/Tournament Manager";
+			};
+			name = Debug;
+		};
+		11F824F61F6310E5007751F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Tournament ManagerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.marcus-trenton.Tournament-ManagerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tournament Manager.app/Tournament Manager";
+			};
+			name = Release;
+		};
+		11F824F81F6310E5007751F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "Tournament ManagerUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.marcus-trenton.Tournament-ManagerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Tournament Manager";
+			};
+			name = Debug;
+		};
+		11F824F91F6310E5007751F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "Tournament ManagerUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.marcus-trenton.Tournament-ManagerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Tournament Manager";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		11F824C41F6310E5007751F1 /* Build configuration list for PBXProject "Tournament Manager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11F824EF1F6310E5007751F1 /* Debug */,
+				11F824F01F6310E5007751F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11F824F11F6310E5007751F1 /* Build configuration list for PBXNativeTarget "Tournament Manager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11F824F21F6310E5007751F1 /* Debug */,
+				11F824F31F6310E5007751F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		11F824F41F6310E5007751F1 /* Build configuration list for PBXNativeTarget "Tournament ManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11F824F51F6310E5007751F1 /* Debug */,
+				11F824F61F6310E5007751F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		11F824F71F6310E5007751F1 /* Build configuration list for PBXNativeTarget "Tournament ManagerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11F824F81F6310E5007751F1 /* Debug */,
+				11F824F91F6310E5007751F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 11F824C11F6310E5007751F1 /* Project object */;
+}
