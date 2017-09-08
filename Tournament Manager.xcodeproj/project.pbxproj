@@ -14,6 +14,7 @@
 		11F824D71F6310E5007751F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F824D51F6310E5007751F1 /* LaunchScreen.storyboard */; };
 		11F824E21F6310E5007751F1 /* Tournament_ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824E11F6310E5007751F1 /* Tournament_ManagerTests.swift */; };
 		11F824ED1F6310E5007751F1 /* Tournament_ManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824EC1F6310E5007751F1 /* Tournament_ManagerUITests.swift */; };
+		11F824FB1F6330D7007751F1 /* Tournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824FA1F6330D7007751F1 /* Tournament.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		11F824E81F6310E5007751F1 /* Tournament ManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tournament ManagerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F824EC1F6310E5007751F1 /* Tournament_ManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament_ManagerUITests.swift; sourceTree = "<group>"; };
 		11F824EE1F6310E5007751F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11F824FA1F6330D7007751F1 /* Tournament.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tournament.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				11F824D31F6310E5007751F1 /* Assets.xcassets */,
 				11F824D51F6310E5007751F1 /* LaunchScreen.storyboard */,
 				11F824D81F6310E5007751F1 /* Info.plist */,
+				11F824FA1F6330D7007751F1 /* Tournament.swift */,
 			);
 			path = "Tournament Manager";
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11F824FB1F6330D7007751F1 /* Tournament.swift in Sources */,
 				11F824CF1F6310E5007751F1 /* ViewController.swift in Sources */,
 				11F824CD1F6310E5007751F1 /* AppDelegate.swift in Sources */,
 			);
