@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController {
     
     var tournaments: [Tournament] = []
-    weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +23,6 @@ class ViewController: UIViewController {
             Tournament(name: "Overwatch")
         ]
         self.tournaments = tournamentsHard
-        let tableView = UITableView(frame: view.bounds)
-        view.addSubview(tableView)
-        self.tableView = tableView
-        
-        tableView.dataSource = self
-        tableView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,7 +42,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let tournament = tournaments[indexPath.row]
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "TournamentCell")
+        let cellIdentifier = "TournamentCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
+            ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
         cell.textLabel?.text = tournament.name
         return cell
     }
