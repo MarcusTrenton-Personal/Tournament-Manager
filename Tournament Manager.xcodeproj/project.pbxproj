@@ -15,6 +15,9 @@
 		11F824E21F6310E5007751F1 /* Tournament_ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824E11F6310E5007751F1 /* Tournament_ManagerTests.swift */; };
 		11F824ED1F6310E5007751F1 /* Tournament_ManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824EC1F6310E5007751F1 /* Tournament_ManagerUITests.swift */; };
 		11F824FB1F6330D7007751F1 /* Tournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824FA1F6330D7007751F1 /* Tournament.swift */; };
+		11F825071F637080007751F1 /* IServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F825051F637080007751F1 /* IServerConnection.swift */; };
+		11F825081F637080007751F1 /* RestServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F825061F637080007751F1 /* RestServerConnection.swift */; };
+		11F8250A1F6370DF007751F1 /* ServerConnectionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F825091F6370DF007751F1 /* ServerConnectionContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		11F824EC1F6310E5007751F1 /* Tournament_ManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament_ManagerUITests.swift; sourceTree = "<group>"; };
 		11F824EE1F6310E5007751F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F824FA1F6330D7007751F1 /* Tournament.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tournament.swift; sourceTree = "<group>"; };
+		11F825051F637080007751F1 /* IServerConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IServerConnection.swift; path = Network/IServerConnection.swift; sourceTree = "<group>"; };
+		11F825061F637080007751F1 /* RestServerConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestServerConnection.swift; path = Network/RestServerConnection.swift; sourceTree = "<group>"; };
+		11F825091F6370DF007751F1 /* ServerConnectionContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServerConnectionContainer.swift; path = Network/ServerConnectionContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 		11F824CB1F6310E5007751F1 /* Tournament Manager */ = {
 			isa = PBXGroup;
 			children = (
+				11F825041F63706F007751F1 /* Network */,
 				11F824CC1F6310E5007751F1 /* AppDelegate.swift */,
 				11F824CE1F6310E5007751F1 /* ViewController.swift */,
 				11F824D01F6310E5007751F1 /* Main.storyboard */,
@@ -126,6 +133,16 @@
 				11F824EE1F6310E5007751F1 /* Info.plist */,
 			);
 			path = "Tournament ManagerUITests";
+			sourceTree = "<group>";
+		};
+		11F825041F63706F007751F1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				11F825051F637080007751F1 /* IServerConnection.swift */,
+				11F825061F637080007751F1 /* RestServerConnection.swift */,
+				11F825091F6370DF007751F1 /* ServerConnectionContainer.swift */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +281,9 @@
 			files = (
 				11F824FB1F6330D7007751F1 /* Tournament.swift in Sources */,
 				11F824CF1F6310E5007751F1 /* ViewController.swift in Sources */,
+				11F8250A1F6370DF007751F1 /* ServerConnectionContainer.swift in Sources */,
+				11F825081F637080007751F1 /* RestServerConnection.swift in Sources */,
+				11F825071F637080007751F1 /* IServerConnection.swift in Sources */,
 				11F824CD1F6310E5007751F1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +531,7 @@
 				11F824F31F6310E5007751F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		11F824F41F6310E5007751F1 /* Build configuration list for PBXNativeTarget "Tournament ManagerTests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +540,7 @@
 				11F824F61F6310E5007751F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		11F824F71F6310E5007751F1 /* Build configuration list for PBXNativeTarget "Tournament ManagerUITests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +549,7 @@
 				11F824F91F6310E5007751F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
