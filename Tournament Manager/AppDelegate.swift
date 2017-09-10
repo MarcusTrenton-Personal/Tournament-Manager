@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Setup all singletons
         ServerConnectionContainer.initialize(serverConnection: RestServerConnection())
-        ServerConnectionContainer.get()?.login()
         
         return true
     }

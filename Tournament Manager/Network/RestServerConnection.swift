@@ -35,6 +35,9 @@ class RestServerConnection : IServerConnection {
                     print("Login succeeded")
                     if let data = dataOption {
                         print("Data: \(data)")
+                        //TODO: Store key
+                        //TODO: Send notification using NotificationCenter
+                        //let nc = NotificationCenter.default
                     } else {
                         print("Login failed: No login token returned")
                     }

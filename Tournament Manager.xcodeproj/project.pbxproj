@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		11F824CD1F6310E5007751F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824CC1F6310E5007751F1 /* AppDelegate.swift */; };
-		11F824CF1F6310E5007751F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824CE1F6310E5007751F1 /* ViewController.swift */; };
-		11F824D21F6310E5007751F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F824D01F6310E5007751F1 /* Main.storyboard */; };
+		11F824CF1F6310E5007751F1 /* TournamentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824CE1F6310E5007751F1 /* TournamentController.swift */; };
+		11F824D21F6310E5007751F1 /* Tournaments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F824D01F6310E5007751F1 /* Tournaments.storyboard */; };
 		11F824D41F6310E5007751F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11F824D31F6310E5007751F1 /* Assets.xcassets */; };
 		11F824D71F6310E5007751F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F824D51F6310E5007751F1 /* LaunchScreen.storyboard */; };
 		11F824E21F6310E5007751F1 /* Tournament_ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824E11F6310E5007751F1 /* Tournament_ManagerTests.swift */; };
@@ -18,6 +18,8 @@
 		11F825071F637080007751F1 /* IServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F825051F637080007751F1 /* IServerConnection.swift */; };
 		11F825081F637080007751F1 /* RestServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F825061F637080007751F1 /* RestServerConnection.swift */; };
 		11F8250A1F6370DF007751F1 /* ServerConnectionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F825091F6370DF007751F1 /* ServerConnectionContainer.swift */; };
+		11F8250C1F6451B9007751F1 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F8250B1F6451B9007751F1 /* Login.storyboard */; };
+		11F8250E1F64621B007751F1 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F8250D1F64621B007751F1 /* LoginController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +42,8 @@
 /* Begin PBXFileReference section */
 		11F824C91F6310E5007751F1 /* Tournament Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tournament Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F824CC1F6310E5007751F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		11F824CE1F6310E5007751F1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		11F824D11F6310E5007751F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		11F824CE1F6310E5007751F1 /* TournamentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentController.swift; sourceTree = "<group>"; };
+		11F824D11F6310E5007751F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Tournaments.storyboard; sourceTree = "<group>"; };
 		11F824D31F6310E5007751F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11F824D61F6310E5007751F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11F824D81F6310E5007751F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +57,8 @@
 		11F825051F637080007751F1 /* IServerConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IServerConnection.swift; path = Network/IServerConnection.swift; sourceTree = "<group>"; };
 		11F825061F637080007751F1 /* RestServerConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestServerConnection.swift; path = Network/RestServerConnection.swift; sourceTree = "<group>"; };
 		11F825091F6370DF007751F1 /* ServerConnectionContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServerConnectionContainer.swift; path = Network/ServerConnectionContainer.swift; sourceTree = "<group>"; };
+		11F8250B1F6451B9007751F1 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		11F8250D1F64621B007751F1 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,12 +111,14 @@
 			children = (
 				11F825041F63706F007751F1 /* Network */,
 				11F824CC1F6310E5007751F1 /* AppDelegate.swift */,
-				11F824CE1F6310E5007751F1 /* ViewController.swift */,
-				11F824D01F6310E5007751F1 /* Main.storyboard */,
+				11F824CE1F6310E5007751F1 /* TournamentController.swift */,
+				11F824D01F6310E5007751F1 /* Tournaments.storyboard */,
 				11F824D31F6310E5007751F1 /* Assets.xcassets */,
 				11F824D51F6310E5007751F1 /* LaunchScreen.storyboard */,
 				11F824D81F6310E5007751F1 /* Info.plist */,
 				11F824FA1F6330D7007751F1 /* Tournament.swift */,
+				11F8250B1F6451B9007751F1 /* Login.storyboard */,
+				11F8250D1F64621B007751F1 /* LoginController.swift */,
 			);
 			path = "Tournament Manager";
 			sourceTree = "<group>";
@@ -252,9 +258,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11F8250C1F6451B9007751F1 /* Login.storyboard in Resources */,
 				11F824D71F6310E5007751F1 /* LaunchScreen.storyboard in Resources */,
 				11F824D41F6310E5007751F1 /* Assets.xcassets in Resources */,
-				11F824D21F6310E5007751F1 /* Main.storyboard in Resources */,
+				11F824D21F6310E5007751F1 /* Tournaments.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,11 +287,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				11F824FB1F6330D7007751F1 /* Tournament.swift in Sources */,
-				11F824CF1F6310E5007751F1 /* ViewController.swift in Sources */,
+				11F824CF1F6310E5007751F1 /* TournamentController.swift in Sources */,
 				11F8250A1F6370DF007751F1 /* ServerConnectionContainer.swift in Sources */,
 				11F825081F637080007751F1 /* RestServerConnection.swift in Sources */,
 				11F825071F637080007751F1 /* IServerConnection.swift in Sources */,
 				11F824CD1F6310E5007751F1 /* AppDelegate.swift in Sources */,
+				11F8250E1F64621B007751F1 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,12 +328,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		11F824D01F6310E5007751F1 /* Main.storyboard */ = {
+		11F824D01F6310E5007751F1 /* Tournaments.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				11F824D11F6310E5007751F1 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Tournaments.storyboard;
 			sourceTree = "<group>";
 		};
 		11F824D51F6310E5007751F1 /* LaunchScreen.storyboard */ = {
