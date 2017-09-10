@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import os.log
 
 class RestServerConnection : IServerConnection {
+    
+    var authToken: Data? = nil
     
     func login() {
         //TODO: Move constant to a config file
@@ -28,43 +31,71 @@ class RestServerConnection : IServerConnection {
             (dataOption, responseOption, errorOption) -> Void in
             
             if let error = errorOption {
-                print("Error: \(error)")
+                os_log("Login error: %@", type: .error, String(describing: error))
+                self.onLoginFailure(resultCode: LoginResult.FailureUnknownError)
             } else if let httpResponse = responseOption as? HTTPURLResponse {
                 switch(httpResponse.statusCode) {
                 case 201:
-                    print("Login succeeded")
-                    if let data = dataOption {
-                        print("Data: \(data)")
-                        //TODO: Store key
-                        //TODO: Send notification using NotificationCenter
-                        //let nc = NotificationCenter.default
-                    } else {
-                        print("Login failed: No login token returned")
-                    }
+                    os_log("Login succeeded", type: .default)
+                    self.onLoginDataReturned(dataOption: dataOption)
                 case 401:
-                    print("Login failed: Incorrect credentials.")
-                //TODO: Notify user
+                    os_log("Login failed 401: Incorrect credentials.", type: .info)
+                    self.onLoginFailure(resultCode: LoginResult.FailureWrongCredentials)
                 case 404:
-                    print("Login failed: Incorrect url or http method.")
-                //TODO: Notify user
+                    os_log("Login failed 404: Incorrect url or http method.", type: .error)
+                    self.onLoginFailure(resultCode: LoginResult.FailureWrongAddressOrMethod)
                 case 500:
-                    print("Login failed: Server error.")
-                //TODO: Notify user
+                    os_log("Login failed 500: Server error.", type: .info)
+                    self.onLoginFailure(resultCode: LoginResult.FailureInteralServerError)
                 default:
-                    print("Unexpected response code of \(httpResponse.statusCode)")
+                    os_log("Unexpected response code of %@", type: .error, String(describing: httpResponse.statusCode))
                     let isSuccess = httpResponse.statusCode % 100 == 2
                     if(isSuccess) {
-                        //TODO treat as success
+                        self.onLoginDataReturned(dataOption: dataOption)
                     } else {
-                        //TODO treat as failure
+                        self.onLoginFailure(resultCode: LoginResult.FailureUnknownError)
                     }
                 }
             } else {
-                print("Did not get response HTTPURLResponse as expected. Instead received: \(String(describing: responseOption))")
+                os_log("Did not get response HTTPURLResponse as expected. Instead received: %@", type: .error, String(describing: responseOption))
+                self.onLoginFailure(resultCode: LoginResult.FailureUnknownError)
             }
         })
         loginTask.resume()
         print("After login request")
+    }
+    
+    private func onLoginDataReturned(dataOption: Data?) {
+        if let data = dataOption {
+            print("Data: \(data)")
+            authToken = data
+            onLoginSuccess()
+        } else {
+            os_log("Login failed: No login token returned", type: .error)
+            onLoginFailure(resultCode: LoginResult.FailureWrongServerResponse)
+        }
+    }
+    
+    private func onLoginSuccess() {
+        let returnedInfo = loginResultToDictionary(resultCode: LoginResult.Success)
+        NotificationCenter.default.post(
+            name: Notification.Name.LoginResult,
+            object: nil,
+            userInfo: returnedInfo
+        )
+    }
+    
+    private func onLoginFailure(resultCode: LoginResult) {
+        let returnedInfo = loginResultToDictionary(resultCode: resultCode)
+        NotificationCenter.default.post(
+            name: Notification.Name.LoginResult,
+            object: nil,
+            userInfo: returnedInfo
+        )
+    }
+    
+    private func loginResultToDictionary(resultCode: LoginResult) -> [AnyHashable:Any] {
+        return [LoginResultKey.resultCode: resultCode]
     }
 }
 
