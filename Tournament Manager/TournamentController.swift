@@ -18,13 +18,6 @@ class TournamentController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         print("View loaded")
         
-        //FIX THIS: Hard-coded construction
-        let tournamentsHard: [Tournament] = [
-            Tournament(name: "Dota"),
-            Tournament(name: "Overwatch")
-        ]
-        self.tournaments = tournamentsHard
-        
         let nc = NotificationCenter.default
         nc.addObserver(forName: Notification.Name.GetAllTournamentResult,
                        object: nil,
@@ -42,7 +35,9 @@ class TournamentController: UIViewController {
         }
         
         if(resultCode == EndpointResult.Success) {
-            print("New tournament data to display")
+            if let tournaments = userInfo[GetAllTournamentsResultKey.tournaments] as? [Tournament] {
+                self.tournaments = tournaments
+            }
         } else {
             //TODO: show error message
             print("Show GetAllTournaments error")

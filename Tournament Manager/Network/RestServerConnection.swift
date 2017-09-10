@@ -174,16 +174,18 @@ class RestServerConnection : IServerConnection {
                 return
             }
             
+            var tournamentModels: [Tournament] = []
             for tournamentJson in tournaments {
                 do {
                     let tournament: Tournament = try Tournament(json: tournamentJson)
                     print("Parsed tournament \(String(describing: tournament))")
+                    tournamentModels.append(tournament)
                 } catch {
                     os_log("GetAllTournaments discarded unparsable tournament: %@", type: .error, String(describing: tournamentJson))
                 }
             }
             
-            onGetAllTournamentsSuccess()
+            onGetAllTournamentsSuccess(tournaments: tournamentModels)
             
         } catch {
             os_log("GetAllTournaments failed: Invalid JSON returned", type: .error)
@@ -191,8 +193,8 @@ class RestServerConnection : IServerConnection {
         }
     }
     
-    private func onGetAllTournamentsSuccess() {
-        let returnedInfo = getAllTournamentsResultToDictionary(resultCode: EndpointResult.Success)
+    private func onGetAllTournamentsSuccess(tournaments: [Tournament]) {
+        let returnedInfo = getAllTournamentsResultToDictionary(resultCode: EndpointResult.Success, tournaments: tournaments)
         NotificationCenter.default.post(
             name: Notification.Name.GetAllTournamentResult,
             object: nil,
@@ -201,7 +203,7 @@ class RestServerConnection : IServerConnection {
     }
     
     private func onGetAllTournamentsFailure(resultCode: EndpointResult) {
-        let returnedInfo = getAllTournamentsResultToDictionary(resultCode: resultCode)
+        let returnedInfo = getAllTournamentsResultToDictionary(resultCode: resultCode, tournaments: nil)
         NotificationCenter.default.post(
             name: Notification.Name.GetAllTournamentResult,
             object: nil,
@@ -209,8 +211,9 @@ class RestServerConnection : IServerConnection {
         )
     }
     
-    private func getAllTournamentsResultToDictionary(resultCode: EndpointResult) -> [AnyHashable:Any] {
-        return [GetAllTournamentsResultKey.resultCode: resultCode]
+    private func getAllTournamentsResultToDictionary(resultCode: EndpointResult, tournaments: [Tournament]?) -> [AnyHashable:Any] {
+        return [GetAllTournamentsResultKey.resultCode: resultCode,
+                GetAllTournamentsResultKey.tournaments: tournaments as Any]
     }
 }
 
