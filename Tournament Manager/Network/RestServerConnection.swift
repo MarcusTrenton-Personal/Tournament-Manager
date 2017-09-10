@@ -11,12 +11,11 @@ import os.log
 
 class RestServerConnection : IServerConnection {
     
-    var authToken: String? = nil
-    
     //TODO: Move constant to a config file
     let hostname = "https://damp-chamber-22487.herokuapp.com/api/v1"
     
-    let session: URLSession
+    //var since adding an authentication token requires a new session
+    var session: URLSession
     
     init() {
         //TODO: Figure out how to store credential in session.
@@ -78,9 +77,25 @@ class RestServerConnection : IServerConnection {
             return
         }
         
-        print("Auth token: \(dataString)")
-        authToken = dataString
+        useAuthToken(authToken: dataString)
         onLoginSuccess()
+    }
+    
+    private func useAuthToken(authToken: String) {
+        let configuration = session.configuration;
+        let newHeaders = addItemToOptionalDictionary(original: configuration.httpAdditionalHeaders, key: "X-Acme-Authentication-Token", value: authToken)
+        configuration.httpAdditionalHeaders = newHeaders
+        session = URLSession(configuration: configuration)
+    }
+    
+    
+    private func addItemToOptionalDictionary(original: [AnyHashable:Any]?, key: AnyHashable, value: Any) -> [AnyHashable: Any] {
+        if var dictionary = original {
+            dictionary[key] = value
+            return dictionary
+        } else {
+            return [key : value]
+        }
     }
     
     private func onLoginSuccess() {
@@ -110,7 +125,6 @@ class RestServerConnection : IServerConnection {
         let url = URL(string: urlString)
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
-        request.addValue(authToken ?? "", forHTTPHeaderField: "X-Acme-Authentication-Token")
         
         let task = session.dataTask(with: request, completionHandler: {
             (dataOption, responseOption, errorOption) -> Void in
