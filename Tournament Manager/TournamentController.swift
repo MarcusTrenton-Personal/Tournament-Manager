@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class TournamentController: UIViewController {
     
@@ -23,14 +24,35 @@ class TournamentController: UIViewController {
             Tournament(name: "Overwatch")
         ]
         self.tournaments = tournamentsHard
+        
+        let nc = NotificationCenter.default
+        nc.addObserver(forName: Notification.Name.GetAllTournamentResult,
+                       object: nil,
+                       queue: nil,
+                       using: onGetAllTournamentsResult)
+        ServerConnectionContainer.get()?.getAllTournaments()
     }
 
+    private func onGetAllTournamentsResult(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let resultCode = userInfo[GetAllTournamentsResultKey.resultCode] as? EndpointResult
+            else {
+                os_log("Notification: %@ did not contain %@", type: .error, String(describing: notification), GetAllTournamentsResultKey.resultCode)
+                return
+        }
+        
+        if(resultCode == EndpointResult.Success) {
+            print("New tournament data to display")
+        } else {
+            //TODO: show error message
+            print("Show GetAllTournaments error")
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
 extension TournamentController: UITableViewDataSource, UITableViewDelegate {

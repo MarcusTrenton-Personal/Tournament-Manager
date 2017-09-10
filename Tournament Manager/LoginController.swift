@@ -27,17 +27,18 @@ class LoginController: UIViewController {
     
     private func onLoginResult(notification: Notification) {
         guard let userInfo = notification.userInfo,
-            let resultCode = userInfo[LoginResultKey.resultCode] as? LoginResult else {
+            let resultCode = userInfo[LoginResultKey.resultCode] as? EndpointResult
+        else {
                 os_log("Notification: %@ did not contain %@", type: .error, String(describing: notification), LoginResultKey.resultCode)
-                return;
+                return
         }
         
-        if(resultCode == LoginResult.Success) {
+        if(resultCode == EndpointResult.Success) {
             print("About to load next scene")
             loadNextScene()
         } else {
             //TODO: show error message
-            print("Show login error");
+            print("Show login error")
         }
     }
     

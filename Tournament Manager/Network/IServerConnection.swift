@@ -13,19 +13,22 @@ import Foundation
 //Now the (hypothetical) analytics system can passively listen to results without being coupled to many controllers.
 protocol IServerConnection {
     
-    //Login to the server. Responds with ServerNotificationName.loginResult with data of key LoginResultKey.resultCode with value type LoginResult
+    //Responds with notification ServerNotificationName.loginResult with data:
+    //Key LoginResultKey.resultCode with value type EndpointResult
     func login()
+    
+    //Responds with notification ServerNotificationName.getAllTournamentsResult with data:
+    //Key GetAllTournamentsResultKey.resultCode with value type EndpointResult
+    //Key GetAllTournamentsResultKey.tournaments with value type [Tournament], which is nil if call fails
+    func getAllTournaments()
 }
 
 extension Notification.Name {
     static let LoginResult = Notification.Name(rawValue: "LoginResult")
+    static let GetAllTournamentResult = Notification.Name(rawValue: "GetAllTournamentResult")
 }
 
-struct LoginResultKey {
-    static let resultCode = "ResultCode"
-}
-
-enum LoginResult: Int {
+enum EndpointResult: Int {
     case Success = 0
     case FailureWrongCredentials = 1
     case FailureWrongAddressOrMethod = 2
@@ -33,3 +36,13 @@ enum LoginResult: Int {
     case FailureWrongServerResponse = 4
     case FailureUnknownError = 5
 }
+
+struct LoginResultKey {
+    static let resultCode = "ResultCode"
+}
+
+struct GetAllTournamentsResultKey {
+    static let resultCode = "ResultCode"
+    static let tournaments = "Tournaments"
+}
+

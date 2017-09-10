@@ -11,28 +11,32 @@ import os.log
 
 class RestServerConnection : IServerConnection {
     
-    var authToken: Data? = nil
+    var authToken: String? = nil
     
-    func login() {
-        //TODO: Move constant to a config file
-        let hostname = "https://damp-chamber-22487.herokuapp.com/api/v1"
-        
+    //TODO: Move constant to a config file
+    let hostname = "https://damp-chamber-22487.herokuapp.com/api/v1"
+    
+    let session: URLSession
+    
+    init() {
         //TODO: Figure out how to store credential in session.
         //Otherwise, switch to ephemeral and manage auth manually
         let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        let loginUrlString = hostname + "/authentications/tokens"
-        let loginUrl = URL(string: loginUrlString)
-        var loginRequest = URLRequest(url: loginUrl!)
-        loginRequest.httpMethod = "POST"
+        session = URLSession(configuration: config)
+    }
+    
+    func login() {
+        let urlString = hostname + "/authentications/tokens"
+        let url = URL(string: urlString)
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
         
-        print("Before login request")
-        let loginTask = session.dataTask(with: loginRequest, completionHandler: {
+        let task = session.dataTask(with: request, completionHandler: {
             (dataOption, responseOption, errorOption) -> Void in
             
             if let error = errorOption {
                 os_log("Login error: %@", type: .error, String(describing: error))
-                self.onLoginFailure(resultCode: LoginResult.FailureUnknownError)
+                self.onLoginFailure(resultCode: EndpointResult.FailureUnknownError)
             } else if let httpResponse = responseOption as? HTTPURLResponse {
                 switch(httpResponse.statusCode) {
                 case 201:
@@ -40,44 +44,47 @@ class RestServerConnection : IServerConnection {
                     self.onLoginDataReturned(dataOption: dataOption)
                 case 401:
                     os_log("Login failed 401: Incorrect credentials.", type: .info)
-                    self.onLoginFailure(resultCode: LoginResult.FailureWrongCredentials)
+                    self.onLoginFailure(resultCode: EndpointResult.FailureWrongCredentials)
                 case 404:
                     os_log("Login failed 404: Incorrect url or http method.", type: .error)
-                    self.onLoginFailure(resultCode: LoginResult.FailureWrongAddressOrMethod)
+                    self.onLoginFailure(resultCode: EndpointResult.FailureWrongAddressOrMethod)
                 case 500:
                     os_log("Login failed 500: Server error.", type: .info)
-                    self.onLoginFailure(resultCode: LoginResult.FailureInteralServerError)
+                    self.onLoginFailure(resultCode: EndpointResult.FailureInteralServerError)
                 default:
-                    os_log("Unexpected response code of %@", type: .error, String(describing: httpResponse.statusCode))
+                    os_log("Login has unexpected response code of %@", type: .error, String(describing: httpResponse.statusCode))
                     let isSuccess = httpResponse.statusCode % 100 == 2
                     if(isSuccess) {
                         self.onLoginDataReturned(dataOption: dataOption)
                     } else {
-                        self.onLoginFailure(resultCode: LoginResult.FailureUnknownError)
+                        self.onLoginFailure(resultCode: EndpointResult.FailureUnknownError)
                     }
                 }
             } else {
-                os_log("Did not get response HTTPURLResponse as expected. Instead received: %@", type: .error, String(describing: responseOption))
-                self.onLoginFailure(resultCode: LoginResult.FailureUnknownError)
+                os_log("Login did not get response HTTPURLResponse as expected. Instead received: %@", type: .error, String(describing: responseOption))
+                self.onLoginFailure(resultCode: EndpointResult.FailureUnknownError)
             }
         })
-        loginTask.resume()
-        print("After login request")
+        task.resume()
     }
     
     private func onLoginDataReturned(dataOption: Data?) {
-        if let data = dataOption {
-            print("Data: \(data)")
-            authToken = data
-            onLoginSuccess()
-        } else {
+        
+        guard let data = dataOption,
+            let dataString = String(data: data, encoding: .utf8)
+        else {
             os_log("Login failed: No login token returned", type: .error)
-            onLoginFailure(resultCode: LoginResult.FailureWrongServerResponse)
+            onLoginFailure(resultCode: EndpointResult.FailureWrongServerResponse)
+            return
         }
+        
+        print("Auth token: \(dataString)")
+        authToken = dataString
+        onLoginSuccess()
     }
     
     private func onLoginSuccess() {
-        let returnedInfo = loginResultToDictionary(resultCode: LoginResult.Success)
+        let returnedInfo = loginResultToDictionary(resultCode: EndpointResult.Success)
         NotificationCenter.default.post(
             name: Notification.Name.LoginResult,
             object: nil,
@@ -85,7 +92,7 @@ class RestServerConnection : IServerConnection {
         )
     }
     
-    private func onLoginFailure(resultCode: LoginResult) {
+    private func onLoginFailure(resultCode: EndpointResult) {
         let returnedInfo = loginResultToDictionary(resultCode: resultCode)
         NotificationCenter.default.post(
             name: Notification.Name.LoginResult,
@@ -94,8 +101,88 @@ class RestServerConnection : IServerConnection {
         )
     }
     
-    private func loginResultToDictionary(resultCode: LoginResult) -> [AnyHashable:Any] {
+    private func loginResultToDictionary(resultCode: EndpointResult) -> [AnyHashable:Any] {
         return [LoginResultKey.resultCode: resultCode]
+    }
+    
+    func getAllTournaments() {
+        let urlString = hostname + "/tournaments"
+        let url = URL(string: urlString)
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.addValue(authToken ?? "", forHTTPHeaderField: "X-Acme-Authentication-Token")
+        
+        let task = session.dataTask(with: request, completionHandler: {
+            (dataOption, responseOption, errorOption) -> Void in
+            
+            if let error = errorOption {
+                os_log("GetAllTournaments error: %@", type: .error, String(describing: error))
+                self.onGetAllTournamentsFailure(resultCode: EndpointResult.FailureUnknownError)
+            } else if let httpResponse = responseOption as? HTTPURLResponse {
+                switch(httpResponse.statusCode) {
+                case 200:
+                    os_log("GetAllTournaments succeeded", type: .default)
+                    self.onGetAllTournamentsDataReturned(dataOption: dataOption)
+                case 401:
+                    os_log("GetAllTournaments failed 401: Incorrect credentials.", type: .info)
+                    self.onGetAllTournamentsFailure(resultCode: EndpointResult.FailureWrongCredentials)
+                case 404:
+                    os_log("GetAllTournaments failed 404: Incorrect url or http method.", type: .error)
+                    self.onGetAllTournamentsFailure(resultCode: EndpointResult.FailureWrongAddressOrMethod)
+                case 500:
+                    os_log("GetAllTournaments failed 500: Server error.", type: .info)
+                    self.onGetAllTournamentsFailure(resultCode: EndpointResult.FailureInteralServerError)
+                default:
+                    os_log("GetAllTournaments had unexpected response code of %@", type: .error, String(describing: httpResponse.statusCode))
+                    let isSuccess = httpResponse.statusCode % 100 == 2
+                    if(isSuccess) {
+                        self.onGetAllTournamentsDataReturned(dataOption: dataOption)
+                    } else {
+                        self.onGetAllTournamentsFailure(resultCode: EndpointResult.FailureUnknownError)
+                    }
+                }
+            } else {
+                os_log("GetAllTournaments did not get response HTTPURLResponse as expected. Instead received: %@", type: .error, String(describing: responseOption))
+                self.onGetAllTournamentsFailure(resultCode: EndpointResult.FailureUnknownError)
+            }
+        })
+        task.resume()
+    }
+    
+    private func onGetAllTournamentsDataReturned(dataOption: Data?) {
+        
+        guard let data = dataOption,
+            let dataString = String(data: data, encoding: .utf8)
+            else {
+                os_log("GetAllTournaments failed: No data returned", type: .error)
+                onGetAllTournamentsFailure(resultCode: EndpointResult.FailureWrongServerResponse)
+                return
+        }
+        
+        print("Tournaments: \(dataString)")
+        onGetAllTournamentsSuccess()
+    }
+    
+    private func onGetAllTournamentsSuccess() {
+        let returnedInfo = getAllTournamentsResultToDictionary(resultCode: EndpointResult.Success)
+        NotificationCenter.default.post(
+            name: Notification.Name.GetAllTournamentResult,
+            object: nil,
+            userInfo: returnedInfo
+        )
+    }
+    
+    private func onGetAllTournamentsFailure(resultCode: EndpointResult) {
+        let returnedInfo = getAllTournamentsResultToDictionary(resultCode: resultCode)
+        NotificationCenter.default.post(
+            name: Notification.Name.GetAllTournamentResult,
+            object: nil,
+            userInfo: returnedInfo
+        )
+    }
+    
+    private func getAllTournamentsResultToDictionary(resultCode: EndpointResult) -> [AnyHashable:Any] {
+        return [GetAllTournamentsResultKey.resultCode: resultCode]
     }
 }
 
