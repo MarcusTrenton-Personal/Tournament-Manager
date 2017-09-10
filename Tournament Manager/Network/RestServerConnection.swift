@@ -166,25 +166,23 @@ class RestServerConnection : IServerConnection {
     private func onGetAllTournamentsDataReturned(dataOption: Data?) {
         do {
             guard let data = dataOption,
-                let allTournaments = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]
+                let dataJson = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject],
+                let tournaments = dataJson["data"] as? [[String: AnyObject]]
             else {
                 os_log("GetAllTournaments failed: No data returned", type: .error)
                 onGetAllTournamentsFailure(resultCode: EndpointResult.FailureWrongServerResponse)
                 return
             }
             
-            print("Tournaments: \(allTournaments)")
-            for tournamentData in allTournaments.values {
-                print("Individual tournament: \(String(describing: tournamentData))");
+            for tournamentJson in tournaments {
                 do {
-                    let tournamentJson = (tournamentData as? [[String: AnyObject]])![0]
-                    print("value: \(String(describing: tournamentJson))");
                     let tournament: Tournament = try Tournament(json: tournamentJson)
                     print("Parsed tournament \(String(describing: tournament))")
                 } catch {
-                    os_log("GetAllTournaments discarded unparsable tournament: %@", type: .error, String(describing: tournamentData))
+                    os_log("GetAllTournaments discarded unparsable tournament: %@", type: .error, String(describing: tournamentJson))
                 }
             }
+            
             onGetAllTournamentsSuccess()
             
         } catch {
