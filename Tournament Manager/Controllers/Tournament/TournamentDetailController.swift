@@ -17,7 +17,6 @@ class TournamentDetailController: UIViewController {
     var tournament: Tournament?
     
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var message: UILabel!
     @IBOutlet weak var createdAt: UILabel!
     
     @IBAction func participate(sender: UIButton) {
@@ -74,7 +73,6 @@ class TournamentDetailController: UIViewController {
         DispatchQueue.main.async {
             self.tournament = tournament
             self.name.text = tournament.name;
-            self.message.text = tournament.entryMessage
             self.createdAt.text = self.dateFormatter.string(from: tournament.createdAt)
         }
     }

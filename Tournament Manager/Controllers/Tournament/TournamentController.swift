@@ -76,9 +76,8 @@ class TournamentController: UIViewController, UITableViewDataSource, UITableView
         let tournament = tournaments[indexPath.row]
         let cellIdentifier = "TournamentCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
-            ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
+            ?? UITableViewCell(style: .`default`, reuseIdentifier: cellIdentifier)
         cell.textLabel?.text = tournament.name
-        cell.detailTextLabel?.text = tournament.entryMessage;
         return cell
     }
     
