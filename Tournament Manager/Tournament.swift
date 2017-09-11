@@ -16,10 +16,12 @@ struct Tournament {
     let id: UUID
     let enterUrl: URL
     let detailsUrl: URL
+    let type: String
     
     let dateFormatter = DateFormatter()
     
     init(json: [String: AnyObject]) throws {
+        //print("json \(String(describing: json))")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
         guard let attributes = json["attributes"],
@@ -33,7 +35,8 @@ struct Tournament {
             let enterLink: String = links["enter_tournament"] as? String,
             let enterUrl = URL(string: enterLink),
             let detailsLink: String = links["self"] as? String,
-            let detailsUrl = URL(string: detailsLink)
+            let detailsUrl = URL(string: detailsLink),
+            let type:String = json["type"] as? String
         else {
             os_log("Cannot create Tournament due to non-spec json: %@", type: .error, String(describing: json))
             throw TournamentError.MalformedJson
@@ -45,6 +48,7 @@ struct Tournament {
         self.id = id
         self.enterUrl = enterUrl
         self.detailsUrl = detailsUrl
+        self.type = type
     }
 }
 

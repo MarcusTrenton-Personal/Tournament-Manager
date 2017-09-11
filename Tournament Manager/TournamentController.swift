@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TournamentController.swift
 //  Tournament Manager
 //
 //  Created by Marcus Trenton on 2017-09-08.
@@ -12,15 +12,16 @@ import os.log
 class TournamentController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tournaments: [Tournament] = []
+    var tableView: UITableView? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("View loaded")
-        tournaments = []
+        //tournaments = []
         
         let nc = NotificationCenter.default
-        nc.addObserver(forName: Notification.Name.GetAllTournamentResult,
+        nc.addObserver(forName: Notification.Name.GetAllTournamentsResult,
                        object: nil,
                        queue: nil,
                        using: onGetAllTournamentsResult)
@@ -40,8 +41,8 @@ class TournamentController: UIViewController, UITableViewDataSource, UITableView
             if let tournaments = userInfo[GetAllTournamentsResultKey.tournaments] as? [Tournament] {
                 DispatchQueue.main.async {
                     self.tournaments = tournaments
-                    if(self.tv != nil) {
-                        self.tv!.reloadData()
+                    if(self.tableView != nil) {
+                        self.tableView!.reloadData()
                         print("reloading tournaments count: \(tournaments.count)")
                     }
                 }
@@ -58,12 +59,11 @@ class TournamentController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tv = tableView
+        self.tableView = tableView
 
         return tournaments.count
     }
     
-    var tv: UITableView? = nil
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let tournament = tournaments[indexPath.row]
@@ -71,7 +71,20 @@ class TournamentController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
             ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
         cell.textLabel?.text = tournament.name
+        cell.detailTextLabel?.text = tournament.entryMessage;
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let index = indexPath.row
+        let haveTournamentForRow = index < tournaments.count
+        if(haveTournamentForRow) {
+            let nextStoryBoard = UIStoryboard(name: "Tournaments", bundle: nil)
+            let nextViewController = nextStoryBoard.instantiateViewController(withIdentifier: "TournamentDetails") as! TournamentDetailController
+            nextViewController.tournamentUrl = tournaments[index].detailsUrl
+            present(nextViewController, animated: true, completion: nil)
+        }
     }
 }
 

@@ -19,13 +19,19 @@ protocol IServerConnection {
     
     //Responds with notification ServerNotificationName.getAllTournamentsResult with data:
     //Key GetAllTournamentsResultKey.resultCode with value type EndpointResult
-    //Key GetAllTournamentsResultKey.tournaments with value type [Tournament], which is nil if call fails
+    //Key GetAllTournamentsResultKey.tournaments with value type [Tournament]?, which is nil if call fails
     func getAllTournaments()
+    
+    //Responds with notification ServerNotificationName.getTournamentResult with data:
+    //Key GetTournamentResultKey.resultCode with value type EndpointResult
+    //Key GetTournamentResultKey.tournament with value type Tournament?, which is nil if call fails
+    func getTournament(url: URL)
 }
 
 extension Notification.Name {
     static let LoginResult = Notification.Name(rawValue: "LoginResult")
-    static let GetAllTournamentResult = Notification.Name(rawValue: "GetAllTournamentResult")
+    static let GetAllTournamentsResult = Notification.Name(rawValue: "GetAllTournamentsResult")
+    static let GetTournamentResult = Notification.Name(rawValue: "GetTournamentResult")
 }
 
 enum EndpointResult: Int {
@@ -44,5 +50,10 @@ struct LoginResultKey {
 struct GetAllTournamentsResultKey {
     static let resultCode = "ResultCode"
     static let tournaments = "Tournaments"
+}
+
+struct GetTournamentResultKey {
+    static let resultCode = "ResultCode"
+    static let tournament = "Tournament"
 }
 

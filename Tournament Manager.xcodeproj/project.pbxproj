@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11202B2B1F66240D00847DD0 /* TournamentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11202B2A1F66240D00847DD0 /* TournamentDetailController.swift */; };
 		11F824CD1F6310E5007751F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824CC1F6310E5007751F1 /* AppDelegate.swift */; };
 		11F824CF1F6310E5007751F1 /* TournamentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824CE1F6310E5007751F1 /* TournamentController.swift */; };
 		11F824D21F6310E5007751F1 /* Tournaments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F824D01F6310E5007751F1 /* Tournaments.storyboard */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11202B2A1F66240D00847DD0 /* TournamentDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentDetailController.swift; sourceTree = "<group>"; };
 		11F824C91F6310E5007751F1 /* Tournament Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tournament Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F824CC1F6310E5007751F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11F824CE1F6310E5007751F1 /* TournamentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				11F824FA1F6330D7007751F1 /* Tournament.swift */,
 				11F8250B1F6451B9007751F1 /* Login.storyboard */,
 				11F8250D1F64621B007751F1 /* LoginController.swift */,
+				11202B2A1F66240D00847DD0 /* TournamentDetailController.swift */,
 			);
 			path = "Tournament Manager";
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				11F825081F637080007751F1 /* RestServerConnection.swift in Sources */,
 				11F825071F637080007751F1 /* IServerConnection.swift in Sources */,
 				11F824CD1F6310E5007751F1 /* AppDelegate.swift in Sources */,
+				11202B2B1F66240D00847DD0 /* TournamentDetailController.swift in Sources */,
 				11F8250E1F64621B007751F1 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
