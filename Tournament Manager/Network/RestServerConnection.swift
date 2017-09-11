@@ -52,7 +52,7 @@ class RestServerConnection : IServerConnection {
                     self.onLoginFailure(resultCode: EndpointResult.FailureInteralServerError)
                 default:
                     os_log("Login has unexpected response code of %@", type: .error, String(describing: httpResponse.statusCode))
-                    let isSuccess = httpResponse.statusCode % 100 == 2
+                    let isSuccess = httpResponse.statusCode / 100 == 2
                     if(isSuccess) {
                         self.onLoginDataReturned(dataOption: dataOption)
                     } else {
@@ -148,7 +148,7 @@ class RestServerConnection : IServerConnection {
                     self.onGetAllTournamentsFailure(resultCode: EndpointResult.FailureInteralServerError)
                 default:
                     os_log("GetAllTournaments had unexpected response code of %@", type: .error, String(describing: httpResponse.statusCode))
-                    let isSuccess = httpResponse.statusCode % 100 == 2
+                    let isSuccess = httpResponse.statusCode / 100 == 2
                     if(isSuccess) {
                         self.onGetAllTournamentsDataReturned(dataOption: dataOption)
                     } else {
@@ -241,7 +241,7 @@ class RestServerConnection : IServerConnection {
                     self.onGetTournamentFailure(resultCode: EndpointResult.FailureInteralServerError)
                 default:
                     os_log("GetTournament had unexpected response code of %@", type: .error, String(describing: httpResponse.statusCode))
-                    let isSuccess = httpResponse.statusCode % 100 == 2
+                    let isSuccess = httpResponse.statusCode / 100 == 2
                     if(isSuccess) {
                         self.onGetTournamentDataReturned(dataOption: dataOption)
                     } else {
@@ -303,5 +303,96 @@ class RestServerConnection : IServerConnection {
         return [GetTournamentResultKey.resultCode: resultCode,
                 GetTournamentResultKey.tournament: tournament as Any]
     }
+    
+    func participateInTournament(url: URL) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let task = session.dataTask(with: request, completionHandler: {
+            (dataOption, responseOption, errorOption) -> Void in
+            
+            if let error = errorOption {
+                os_log("ParticipateInTournament error: %@", type: .error, String(describing: error))
+                self.onParticipateInTournamentFailure(resultCode: EndpointResult.FailureUnknownError)
+            } else if let httpResponse = responseOption as? HTTPURLResponse {
+                switch(httpResponse.statusCode) {
+                case 201:
+                    os_log("ParticipateInTournament succeeded", type: .default)
+                    self.onParticipateInTournamentDataReturned(dataOption: dataOption)
+                case 401:
+                    os_log("ParticipateInTournament failed 401: Incorrect credentials.", type: .info)
+                    self.onParticipateInTournamentFailure(resultCode: EndpointResult.FailureWrongCredentials)
+                case 404:
+                    os_log("ParticipateInTournament failed 404: Incorrect url or http method.", type: .error)
+                    self.onParticipateInTournamentFailure(resultCode: EndpointResult.FailureWrongAddressOrMethod)
+                case 500:
+                    os_log("ParticipateInTournament failed 500: Server error.", type: .info)
+                    self.onParticipateInTournamentFailure(resultCode: EndpointResult.FailureInteralServerError)
+                default:
+                    os_log("ParticipateInTournament had unexpected response code of %@", type: .error, String(describing: httpResponse.statusCode))
+                    let isSuccess = httpResponse.statusCode / 100 == 2
+                    if(isSuccess) {
+                        self.onParticipateInTournamentDataReturned(dataOption: dataOption)
+                    } else {
+                        self.onParticipateInTournamentFailure(resultCode: EndpointResult.FailureUnknownError)
+                    }
+                }
+            } else {
+                os_log("ParticipateInTournament did not get response HTTPURLResponse as expected. Instead received: %@", type: .error, String(describing: responseOption))
+                self.onGetTournamentFailure(resultCode: EndpointResult.FailureUnknownError)
+            }
+        })
+        task.resume()
+    }
+    
+    private func onParticipateInTournamentDataReturned(dataOption: Data?) {
+        print("Participate data \(String(describing: dataOption))")
+        do {
+            guard let data = dataOption,
+                let dataJson = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject],
+                let tournamentJson = dataJson["data"] as? [String: AnyObject]
+                else {
+                    os_log("ParticipateInTournament failed: No data returned", type: .error)
+                    onParticipateInTournamentFailure(resultCode: EndpointResult.FailureWrongServerResponse)
+                    return
+            }
+            
+            do {
+                let tournament: Tournament = try Tournament(json: tournamentJson)
+                onParticipateInTournamentSuccess(tournament: tournament)
+            } catch {
+                os_log("ParticipateInTournament discarded unparsable participation: %@", type: .error, String(describing: tournamentJson))
+                onParticipateInTournamentFailure(resultCode: EndpointResult.FailureWrongServerResponse)
+            }
+            
+        } catch {
+            os_log("ParticipateInTournament failed: Invalid JSON returned", type: .error)
+            onGetTournamentFailure(resultCode: EndpointResult.FailureWrongServerResponse)
+        }
+    }
+    
+    private func onParticipateInTournamentSuccess(tournament: Tournament) {
+        let returnedInfo = participateInTournamentResultToDictionary(resultCode: EndpointResult.Success, tournament: tournament)
+        NotificationCenter.default.post(
+            name: Notification.Name.ParticipateInTournamentResult,
+            object: nil,
+            userInfo: returnedInfo
+        )
+    }
+    
+    private func onParticipateInTournamentFailure(resultCode: EndpointResult) {
+        let returnedInfo = participateInTournamentResultToDictionary(resultCode: resultCode, tournament: nil)
+        NotificationCenter.default.post(
+            name: Notification.Name.GetTournamentResult,
+            object: nil,
+            userInfo: returnedInfo
+        )
+    }
+    
+    private func participateInTournamentResultToDictionary(resultCode: EndpointResult, tournament: Tournament?) -> [AnyHashable:Any] {
+        return [ParticipateInTournamentResultKey.resultCode: resultCode,
+                ParticipateInTournamentResultKey.partipation: tournament as Any]
+    }
+
 }
 

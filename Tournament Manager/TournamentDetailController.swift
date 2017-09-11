@@ -14,6 +14,7 @@ class TournamentDetailController: UIViewController {
     var tournamentUrl: URL = URL(string: "www.fakeurl.com")! //Will be filled by previous controller
     
     var dateFormatter: DateFormatter = DateFormatter()
+    var tournament: Tournament?
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var message: UILabel!
@@ -24,7 +25,18 @@ class TournamentDetailController: UIViewController {
     }
     
     private func participateAsync() {
-        print("Clicked participate")
+        if(tournament != nil) {
+            let nc = NotificationCenter.default
+            nc.addObserver(forName: Notification.Name.ParticipateInTournamentResult,
+                           object: nil,
+                           queue: nil,
+                           using: onParticipateInTournamentResult)
+            ServerConnectionContainer.get()?.participateInTournament(url: (tournament?.enterUrl)!)
+        }
+    }
+    
+    private func onParticipateInTournamentResult(notification: Notification) {
+        print("Participate notification \(notification)")
     }
     
     @IBAction func decline(sender: UIButton) {
@@ -67,6 +79,7 @@ class TournamentDetailController: UIViewController {
     
     private func updateTournamentUi(tournament: Tournament) {
         DispatchQueue.main.async {
+            self.tournament = tournament
             self.name.text = tournament.name;
             self.message.text = tournament.entryMessage
             self.date.text = self.dateFormatter.string(from: tournament.date)
