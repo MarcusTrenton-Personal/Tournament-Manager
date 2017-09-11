@@ -11,7 +11,7 @@ import os.log
 
 class RestServerConnection : IServerConnection {
     
-    let hostname: String //= "https://damp-chamber-22487.herokuapp.com/api/v1"
+    let hostname: String
     
     //var since adding an authentication token requires a new session
     var session: URLSession
