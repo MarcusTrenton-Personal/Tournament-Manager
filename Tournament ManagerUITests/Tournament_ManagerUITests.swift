@@ -13,24 +13,23 @@ class Tournament_ManagerUITests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-//    func testExample() {
-//        // Use recording to get started writing UI tests.
-//        // Use XCTAssert and related functions to verify your tests produce the correct results.
-//    }
+    func testParticipate() {
+        //That all of these steps can be done and not crash is enough of a test.
+        //Login must work, tournaments parsed, and participation done.
+        //However this is brittle as it relies on exact text (Silver) returned by the server. 
+        //The test would have to be paired with a staging server with fixed results or mock objects triggered on launch.
+        let app = XCUIApplication()
+        app.tables.staticTexts["Silver"].tap()
+        app.buttons["Particiate"].tap()
+        app.alerts["Welcome participant"].buttons["Got it"].tap()
+    }
     
 }
