@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class TournamentController: UIViewController {
+class TournamentController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tournaments: [Tournament] = []
 
@@ -17,6 +17,7 @@ class TournamentController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("View loaded")
+        tournaments = []
         
         let nc = NotificationCenter.default
         nc.addObserver(forName: Notification.Name.GetAllTournamentResult,
@@ -37,9 +38,13 @@ class TournamentController: UIViewController {
         if(resultCode == EndpointResult.Success) {
             print("Received new tournaments")
             if let tournaments = userInfo[GetAllTournamentsResultKey.tournaments] as? [Tournament] {
-                print("tournaments count: \(tournaments.count)")
-                print("tournaments: \(tournaments)")
-                self.tournaments = tournaments
+                DispatchQueue.main.async {
+                    self.tournaments = tournaments
+                    if(self.tv != nil) {
+                        self.tv!.reloadData()
+                        print("reloading tournaments count: \(tournaments.count)")
+                    }
+                }
             }
         } else {
             //TODO: show error message
@@ -51,14 +56,14 @@ class TournamentController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-}
-
-extension TournamentController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tv = tableView
+
         return tournaments.count
     }
     
+    var tv: UITableView? = nil
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let tournament = tournaments[indexPath.row]
@@ -69,3 +74,4 @@ extension TournamentController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 }
+
