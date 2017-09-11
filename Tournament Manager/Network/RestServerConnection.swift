@@ -11,15 +11,13 @@ import os.log
 
 class RestServerConnection : IServerConnection {
     
-    //TODO: Move constant to a config file
-    let hostname = "https://damp-chamber-22487.herokuapp.com/api/v1"
+    let hostname: String //= "https://damp-chamber-22487.herokuapp.com/api/v1"
     
     //var since adding an authentication token requires a new session
     var session: URLSession
     
-    init() {
-        //TODO: Figure out how to store credential in session.
-        //Otherwise, switch to ephemeral and manage auth manually
+    init(hostname: String) {
+        self.hostname = hostname
         let config = URLSessionConfiguration.default
         session = URLSession(configuration: config)
     }

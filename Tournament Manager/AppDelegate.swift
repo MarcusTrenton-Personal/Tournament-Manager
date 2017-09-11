@@ -16,8 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        let host = Bundle.main.object(forInfoDictionaryKey: "HOST") as? String
+        let serverConnection = RestServerConnection(hostname: host!)
+        
         //Setup all singletons
-        ServerConnectionContainer.initialize(serverConnection: RestServerConnection())
+        ServerConnectionContainer.initialize(serverConnection: serverConnection)
         
         return true
     }
