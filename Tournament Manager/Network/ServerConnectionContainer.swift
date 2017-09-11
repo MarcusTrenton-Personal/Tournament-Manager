@@ -6,7 +6,7 @@
 //  Copyright © 2017 Marcus Trenton. All rights reserved.
 //
 
-import Foundation
+import os.log
 
 //This class is a work-around to make singletons test-friendly.
 //The container is a singleton that can only be set once with the instance.
@@ -19,7 +19,7 @@ final class ServerConnectionContainer {
         if(instance.serverConnection == nil) {
             instance.serverConnection = serverConnection
         } else {
-            print("Cannot initialize a singleton twice")
+            os_log("Cannot initialize a singleton twice", type: .error)
         }
     }
     
