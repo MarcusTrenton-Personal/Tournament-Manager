@@ -21,7 +21,6 @@ struct Tournament {
     let dateFormatter = DateFormatter()
     
     init(json: [String: AnyObject]) throws {
-        //print("json \(String(describing: json))")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
         guard let attributes = json["attributes"],

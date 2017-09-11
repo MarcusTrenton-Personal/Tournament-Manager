@@ -12,14 +12,15 @@ import os.log
 class TournamentController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tournaments: [Tournament] = []
-    var tableView: UITableView? = nil
+    
+    @IBOutlet weak var table: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        print("View loaded")
-        //tournaments = []
-        
+        getAllTournamentsAsync()
+    }
+    
+    private func getAllTournamentsAsync() {
         let nc = NotificationCenter.default
         nc.addObserver(forName: Notification.Name.GetAllTournamentsResult,
                        object: nil,
@@ -37,30 +38,29 @@ class TournamentController: UIViewController, UITableViewDataSource, UITableView
         }
         
         if(resultCode == EndpointResult.Success) {
-            print("Received new tournaments")
             if let tournaments = userInfo[GetAllTournamentsResultKey.tournaments] as? [Tournament] {
-                DispatchQueue.main.async {
-                    self.tournaments = tournaments
-                    if(self.tableView != nil) {
-                        self.tableView!.reloadData()
-                        print("reloading tournaments count: \(tournaments.count)")
-                    }
-                }
+                updateAllTournamentsUi(tournaments: tournaments)
+            } else {
+                os_log("Notification %@ did not contain did not contain an [Tournament]? in userInfo[%@]", type: .error, String(describing: notification), GetAllTournamentsResultKey.tournaments)
             }
         } else {
-            //TODO: show error message
-            print("Show GetAllTournaments error")
+            showErrorUi(resultCode: resultCode)
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func showErrorUi(resultCode: EndpointResult) {
+        //TODO: show error message
+        print("Show GetAllTournaments error")
+    }
+    
+    private func updateAllTournamentsUi(tournaments: [Tournament]) {
+        DispatchQueue.main.async {
+            self.tournaments = tournaments
+            self.table.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.tableView = tableView
-
         return tournaments.count
     }
     
@@ -85,6 +85,10 @@ class TournamentController: UIViewController, UITableViewDataSource, UITableView
             nextViewController.tournamentUrl = tournaments[index].detailsUrl
             present(nextViewController, animated: true, completion: nil)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Tournaments"
     }
 }
 

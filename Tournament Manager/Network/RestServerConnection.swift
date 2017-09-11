@@ -267,8 +267,6 @@ class RestServerConnection : IServerConnection {
                     return
             }
             
-            print("Parsed tournament data: \(tournamentJson)")
-            
             do {
                 let tournament: Tournament = try Tournament(json: tournamentJson)
                 onGetTournamentSuccess(tournament: tournament)
