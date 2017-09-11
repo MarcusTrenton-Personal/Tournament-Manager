@@ -6,6 +6,7 @@
 //  Copyright © 2017 Marcus Trenton. All rights reserved.
 //
 
+import Foundation
 import os.log
 
 class RestServerConnection : IServerConnection {
