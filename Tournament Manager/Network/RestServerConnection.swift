@@ -178,7 +178,6 @@ class RestServerConnection : IServerConnection {
             for tournamentJson in tournaments {
                 do {
                     let tournament: Tournament = try Tournament(json: tournamentJson)
-                    print("Parsed tournament \(String(describing: tournament))")
                     tournamentModels.append(tournament)
                 } catch {
                     os_log("GetAllTournaments discarded unparsable tournament: %@", type: .error, String(describing: tournamentJson))

@@ -35,7 +35,10 @@ class TournamentController: UIViewController {
         }
         
         if(resultCode == EndpointResult.Success) {
+            print("Received new tournaments")
             if let tournaments = userInfo[GetAllTournamentsResultKey.tournaments] as? [Tournament] {
+                print("tournaments count: \(tournaments.count)")
+                print("tournaments: \(tournaments)")
                 self.tournaments = tournaments
             }
         } else {
