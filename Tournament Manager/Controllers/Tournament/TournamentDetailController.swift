@@ -18,25 +18,10 @@ class TournamentDetailController: UIViewController {
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var message: UILabel!
-    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var createdAt: UILabel!
     
     @IBAction func participate(sender: UIButton) {
         participateAsync()
-    }
-    
-    private func participateAsync() {
-        if(tournament != nil) {
-            let nc = NotificationCenter.default
-            nc.addObserver(forName: Notification.Name.ParticipateInTournamentResult,
-                           object: nil,
-                           queue: nil,
-                           using: onParticipateInTournamentResult)
-            ServerConnectionContainer.get()?.participateInTournament(url: (tournament?.enterUrl)!)
-        }
-    }
-    
-    private func onParticipateInTournamentResult(notification: Notification) {
-        print("Participate notification \(notification)")
     }
     
     @IBAction func decline(sender: UIButton) {
@@ -73,7 +58,7 @@ class TournamentDetailController: UIViewController {
                 os_log("Notification %@ did not contain did not contain a Tournament in userInfo[%@]", type: .error, String(describing: notification), GetTournamentResultKey.tournament)
             }
         } else {
-            showErrorUi(resultCode: resultCode)
+            showTournamentErrorUi(resultCode: resultCode)
         }
     }
     
@@ -82,13 +67,55 @@ class TournamentDetailController: UIViewController {
             self.tournament = tournament
             self.name.text = tournament.name;
             self.message.text = tournament.entryMessage
-            self.date.text = self.dateFormatter.string(from: tournament.date)
+            self.createdAt.text = self.dateFormatter.string(from: tournament.createdAt)
         }
     }
     
-    private func showErrorUi(resultCode: EndpointResult) {
+    private func showTournamentErrorUi(resultCode: EndpointResult) {
         //TODO: show error message
         print("Show GetTournament error")
+    }
+    
+    private func participateAsync() {
+        if(tournament != nil) {
+            let nc = NotificationCenter.default
+            nc.addObserver(forName: Notification.Name.ParticipateInTournamentResult,
+                           object: nil,
+                           queue: nil,
+                           using: onParticipateInTournamentResult)
+            ServerConnectionContainer.get()?.participateInTournament(url: (tournament?.enterUrl)!)
+        }
+    }
+    
+    private func onParticipateInTournamentResult(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let resultCode = userInfo[ParticipateInTournamentResultKey.resultCode] as? EndpointResult
+            else {
+                os_log("Notification: %@ did not contain EndpointResult in userInfo[%@]", type: .error, String(describing: notification), ParticipateInTournamentResultKey.resultCode)
+                return
+        }
+        
+        if(resultCode == EndpointResult.Success) {
+            if let pariticipation = userInfo[ParticipateInTournamentResultKey.partipation] as? Participation {
+                showParticipationUi(participation: pariticipation)
+            } else {
+                os_log("Notification %@ did not contain did not contain a Pariticipation in userInfo[%@]", type: .error, String(describing: notification), ParticipateInTournamentResultKey.partipation)
+            }
+        } else {
+            showParticipationErrorUi(resultCode: resultCode)
+        }
+    }
+    
+    private func showParticipationUi(participation: Participation) {
+        let alert = UIAlertController(title: "Welcome participant", message: participation.entryMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func showParticipationErrorUi(resultCode: EndpointResult) {
+        print("show participation failure popup");
     }
 }
 

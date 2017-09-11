@@ -346,11 +346,10 @@ class RestServerConnection : IServerConnection {
     }
     
     private func onParticipateInTournamentDataReturned(dataOption: Data?) {
-        print("Participate data \(String(describing: dataOption))")
         do {
             guard let data = dataOption,
                 let dataJson = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject],
-                let tournamentJson = dataJson["data"] as? [String: AnyObject]
+                let participationJson = dataJson["data"] as? [String: AnyObject]
                 else {
                     os_log("ParticipateInTournament failed: No data returned", type: .error)
                     onParticipateInTournamentFailure(resultCode: EndpointResult.FailureWrongServerResponse)
@@ -358,10 +357,10 @@ class RestServerConnection : IServerConnection {
             }
             
             do {
-                let tournament: Tournament = try Tournament(json: tournamentJson)
-                onParticipateInTournamentSuccess(tournament: tournament)
+                let participation: Participation = try Participation(json: participationJson)
+                onParticipateInTournamentSuccess(participation: participation)
             } catch {
-                os_log("ParticipateInTournament discarded unparsable participation: %@", type: .error, String(describing: tournamentJson))
+                os_log("ParticipateInTournament discarded unparsable participation: %@", type: .error, String(describing: participationJson))
                 onParticipateInTournamentFailure(resultCode: EndpointResult.FailureWrongServerResponse)
             }
             
@@ -371,8 +370,8 @@ class RestServerConnection : IServerConnection {
         }
     }
     
-    private func onParticipateInTournamentSuccess(tournament: Tournament) {
-        let returnedInfo = participateInTournamentResultToDictionary(resultCode: EndpointResult.Success, tournament: tournament)
+    private func onParticipateInTournamentSuccess(participation: Participation) {
+        let returnedInfo = participateInTournamentResultToDictionary(resultCode: EndpointResult.Success, participation: participation)
         NotificationCenter.default.post(
             name: Notification.Name.ParticipateInTournamentResult,
             object: nil,
@@ -381,7 +380,7 @@ class RestServerConnection : IServerConnection {
     }
     
     private func onParticipateInTournamentFailure(resultCode: EndpointResult) {
-        let returnedInfo = participateInTournamentResultToDictionary(resultCode: resultCode, tournament: nil)
+        let returnedInfo = participateInTournamentResultToDictionary(resultCode: resultCode, participation: nil)
         NotificationCenter.default.post(
             name: Notification.Name.GetTournamentResult,
             object: nil,
@@ -389,9 +388,9 @@ class RestServerConnection : IServerConnection {
         )
     }
     
-    private func participateInTournamentResultToDictionary(resultCode: EndpointResult, tournament: Tournament?) -> [AnyHashable:Any] {
+    private func participateInTournamentResultToDictionary(resultCode: EndpointResult, participation: Participation?) -> [AnyHashable:Any] {
         return [ParticipateInTournamentResultKey.resultCode: resultCode,
-                ParticipateInTournamentResultKey.partipation: tournament as Any]
+                ParticipateInTournamentResultKey.partipation: participation as Any]
     }
 
 }
