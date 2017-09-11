@@ -382,7 +382,7 @@ class RestServerConnection : IServerConnection {
     private func onParticipateInTournamentFailure(resultCode: EndpointResult) {
         let returnedInfo = participateInTournamentResultToDictionary(resultCode: resultCode, participation: nil)
         NotificationCenter.default.post(
-            name: Notification.Name.GetTournamentResult,
+            name: Notification.Name.ParticipateInTournamentResult,
             object: nil,
             userInfo: returnedInfo
         )

@@ -17,15 +17,19 @@ class TournamentController: UIViewController, UITableViewDataSource, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addObservers()
         getAllTournamentsAsync()
     }
     
-    private func getAllTournamentsAsync() {
+    private func addObservers() {
         let nc = NotificationCenter.default
         nc.addObserver(forName: Notification.Name.GetAllTournamentsResult,
                        object: nil,
                        queue: nil,
                        using: onGetAllTournamentsResult)
+    }
+    
+    private func getAllTournamentsAsync() {
         ServerConnectionContainer.get()?.getAllTournaments()
     }
 
@@ -49,12 +53,15 @@ class TournamentController: UIViewController, UITableViewDataSource, UITableView
     }
     
     private func showErrorUi(resultCode: EndpointResult) {
-        //TODO: show error message
-        print("Show GetAllTournaments error")
+        Popups.ShowError(controller: self, resultCode: resultCode, onExit: { _ in
+            self.getAllTournamentsAsync()
+        })
     }
     
     private func updateAllTournamentsUi(tournaments: [Tournament]) {
         DispatchQueue.main.async {
+            //Could sort the tournaments by createdAt date but the result looks worse.
+            //Using the order returned by the server Bronze->Silver->Gold is better.
             self.tournaments = tournaments
             self.table.reloadData()
         }

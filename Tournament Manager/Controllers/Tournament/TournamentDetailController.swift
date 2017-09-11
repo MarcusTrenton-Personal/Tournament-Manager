@@ -31,15 +31,23 @@ class TournamentDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dateFormatter.dateFormat = "MMM dd, yyyy"
+        addObservers()
         getTournamentAsync()
     }
     
-    private func getTournamentAsync() {
+    private func addObservers() {
         let nc = NotificationCenter.default
         nc.addObserver(forName: Notification.Name.GetTournamentResult,
                        object: nil,
                        queue: nil,
                        using: onGetTournamentResult)
+        nc.addObserver(forName: Notification.Name.ParticipateInTournamentResult,
+                       object: nil,
+                       queue: nil,
+                       using: onParticipateInTournamentResult)
+    }
+    
+    private func getTournamentAsync() {
         ServerConnectionContainer.get()?.getTournament(url: tournamentUrl)
     }
     
@@ -72,17 +80,13 @@ class TournamentDetailController: UIViewController {
     }
     
     private func showTournamentErrorUi(resultCode: EndpointResult) {
-        //TODO: show error message
-        print("Show GetTournament error")
+        Popups.ShowError(controller: self, resultCode: resultCode, onExit: { _ in
+            self.dismiss(animated: true, completion: nil)
+        })
     }
     
     private func participateAsync() {
         if(tournament != nil) {
-            let nc = NotificationCenter.default
-            nc.addObserver(forName: Notification.Name.ParticipateInTournamentResult,
-                           object: nil,
-                           queue: nil,
-                           using: onParticipateInTournamentResult)
             ServerConnectionContainer.get()?.participateInTournament(url: (tournament?.enterUrl)!)
         }
     }
@@ -111,11 +115,11 @@ class TournamentDetailController: UIViewController {
         alert.addAction(UIAlertAction(title: "Got it", style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
         }))
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     private func showParticipationErrorUi(resultCode: EndpointResult) {
-        print("show participation failure popup");
+        Popups.ShowError(controller: self, resultCode: resultCode)
     }
 }
 

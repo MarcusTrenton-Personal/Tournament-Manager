@@ -22,6 +22,7 @@
 		11FEB9311F666F5000DDB060 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FEB92F1F666F5000DDB060 /* Login.storyboard */; };
 		11FEB9321F666F5000DDB060 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FEB9301F666F5000DDB060 /* LoginController.swift */; };
 		11FEB9341F66702700DDB060 /* Participation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FEB9331F66702700DDB060 /* Participation.swift */; };
+		11FEB9371F66FE6100DDB060 /* Popups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FEB9361F66FE6100DDB060 /* Popups.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		11FEB92F1F666F5000DDB060 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Login/Login.storyboard; sourceTree = "<group>"; };
 		11FEB9301F666F5000DDB060 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginController.swift; path = Login/LoginController.swift; sourceTree = "<group>"; };
 		11FEB9331F66702700DDB060 /* Participation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Participation.swift; path = Models/Participation.swift; sourceTree = "<group>"; };
+		11FEB9361F66FE6100DDB060 /* Popups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Popups.swift; path = Utility/Popups.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 		11F824CB1F6310E5007751F1 /* Tournament Manager */ = {
 			isa = PBXGroup;
 			children = (
+				11FEB9351F66FE2600DDB060 /* Utility */,
 				11FEB9261F666F1400DDB060 /* Controllers */,
 				11202B2F1F666B5800847DD0 /* Models */,
 				11F825041F63706F007751F1 /* Network */,
@@ -187,6 +190,14 @@
 				11FEB92B1F666F4200DDB060 /* Tournaments.storyboard */,
 			);
 			name = Tournament;
+			sourceTree = "<group>";
+		};
+		11FEB9351F66FE2600DDB060 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				11FEB9361F66FE6100DDB060 /* Popups.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,6 +337,7 @@
 			files = (
 				11FEB92C1F666F4200DDB060 /* TournamentController.swift in Sources */,
 				11F8250A1F6370DF007751F1 /* ServerConnectionContainer.swift in Sources */,
+				11FEB9371F66FE6100DDB060 /* Popups.swift in Sources */,
 				11FEB9341F66702700DDB060 /* Participation.swift in Sources */,
 				11FEB92D1F666F4200DDB060 /* TournamentDetailController.swift in Sources */,
 				11202B311F666B6900847DD0 /* Tournament.swift in Sources */,
