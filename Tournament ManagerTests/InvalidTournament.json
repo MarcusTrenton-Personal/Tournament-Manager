@@ -1,0 +1,10 @@
+{
+    "data": {
+        "id": "777367ea-6d4c-4192-b9ed-e5350a6c8cde",
+        "type": "tournaments",
+        "links": {
+            "enter_tournament": "http://example.com/api/v1/tournaments/777367ea-6d4c-4192-b9ed-e5350a6c8cde/participation",
+            "self": "http://example.com/api/v1/tournaments/777367ea-6d4c-4192-b9ed-e5350a6c8cde"
+        }
+    }
+}

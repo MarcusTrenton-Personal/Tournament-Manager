@@ -11,7 +11,7 @@
 		11F824CD1F6310E5007751F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824CC1F6310E5007751F1 /* AppDelegate.swift */; };
 		11F824D41F6310E5007751F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11F824D31F6310E5007751F1 /* Assets.xcassets */; };
 		11F824D71F6310E5007751F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F824D51F6310E5007751F1 /* LaunchScreen.storyboard */; };
-		11F824E21F6310E5007751F1 /* Tournament_ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824E11F6310E5007751F1 /* Tournament_ManagerTests.swift */; };
+		11F824E21F6310E5007751F1 /* TournamentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824E11F6310E5007751F1 /* TournamentTests.swift */; };
 		11F824ED1F6310E5007751F1 /* Tournament_ManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F824EC1F6310E5007751F1 /* Tournament_ManagerUITests.swift */; };
 		11F825071F637080007751F1 /* IServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F825051F637080007751F1 /* IServerConnection.swift */; };
 		11F825081F637080007751F1 /* RestServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F825061F637080007751F1 /* RestServerConnection.swift */; };
@@ -23,6 +23,13 @@
 		11FEB9321F666F5000DDB060 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FEB9301F666F5000DDB060 /* LoginController.swift */; };
 		11FEB9341F66702700DDB060 /* Participation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FEB9331F66702700DDB060 /* Participation.swift */; };
 		11FEB9371F66FE6100DDB060 /* Popups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FEB9361F66FE6100DDB060 /* Popups.swift */; };
+		11FEB9391F67143500DDB060 /* ValidTournament.json in Resources */ = {isa = PBXBuildFile; fileRef = 11FEB9381F67143500DDB060 /* ValidTournament.json */; };
+		11FEB93B1F67190600DDB060 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FEB93A1F67190600DDB060 /* JsonLoader.swift */; };
+		11FEB93D1F671FCE00DDB060 /* InvalidTournament.json in Resources */ = {isa = PBXBuildFile; fileRef = 11FEB93C1F671FCE00DDB060 /* InvalidTournament.json */; };
+		11FEB93F1F67202E00DDB060 /* ParticipationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FEB93E1F67202E00DDB060 /* ParticipationTests.swift */; };
+		11FEB9421F67221400DDB060 /* InvalidParticipation.json in Resources */ = {isa = PBXBuildFile; fileRef = 11FEB9401F67221400DDB060 /* InvalidParticipation.json */; };
+		11FEB9431F67221400DDB060 /* ValidParticipation.json in Resources */ = {isa = PBXBuildFile; fileRef = 11FEB9411F67221400DDB060 /* ValidParticipation.json */; };
+		11FEB9451F67274800DDB060 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 11FEB9441F67274800DDB060 /* ReadMe.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +57,7 @@
 		11F824D61F6310E5007751F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11F824D81F6310E5007751F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F824DD1F6310E5007751F1 /* Tournament ManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tournament ManagerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		11F824E11F6310E5007751F1 /* Tournament_ManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament_ManagerTests.swift; sourceTree = "<group>"; };
+		11F824E11F6310E5007751F1 /* TournamentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentTests.swift; sourceTree = "<group>"; };
 		11F824E31F6310E5007751F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F824E81F6310E5007751F1 /* Tournament ManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tournament ManagerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F824EC1F6310E5007751F1 /* Tournament_ManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament_ManagerUITests.swift; sourceTree = "<group>"; };
@@ -65,6 +72,13 @@
 		11FEB9301F666F5000DDB060 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginController.swift; path = Login/LoginController.swift; sourceTree = "<group>"; };
 		11FEB9331F66702700DDB060 /* Participation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Participation.swift; path = Models/Participation.swift; sourceTree = "<group>"; };
 		11FEB9361F66FE6100DDB060 /* Popups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Popups.swift; path = Utility/Popups.swift; sourceTree = "<group>"; };
+		11FEB9381F67143500DDB060 /* ValidTournament.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidTournament.json; sourceTree = "<group>"; };
+		11FEB93A1F67190600DDB060 /* JsonLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
+		11FEB93C1F671FCE00DDB060 /* InvalidTournament.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidTournament.json; sourceTree = "<group>"; };
+		11FEB93E1F67202E00DDB060 /* ParticipationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipationTests.swift; sourceTree = "<group>"; };
+		11FEB9401F67221400DDB060 /* InvalidParticipation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidParticipation.json; sourceTree = "<group>"; };
+		11FEB9411F67221400DDB060 /* ValidParticipation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidParticipation.json; sourceTree = "<group>"; };
+		11FEB9441F67274800DDB060 /* ReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = ReadMe.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +146,7 @@
 				11F824D31F6310E5007751F1 /* Assets.xcassets */,
 				11F824D51F6310E5007751F1 /* LaunchScreen.storyboard */,
 				11F824D81F6310E5007751F1 /* Info.plist */,
+				11FEB9441F67274800DDB060 /* ReadMe.rtf */,
 			);
 			path = "Tournament Manager";
 			sourceTree = "<group>";
@@ -139,8 +154,14 @@
 		11F824E01F6310E5007751F1 /* Tournament ManagerTests */ = {
 			isa = PBXGroup;
 			children = (
-				11F824E11F6310E5007751F1 /* Tournament_ManagerTests.swift */,
+				11FEB9401F67221400DDB060 /* InvalidParticipation.json */,
+				11FEB9411F67221400DDB060 /* ValidParticipation.json */,
+				11FEB93C1F671FCE00DDB060 /* InvalidTournament.json */,
+				11F824E11F6310E5007751F1 /* TournamentTests.swift */,
 				11F824E31F6310E5007751F1 /* Info.plist */,
+				11FEB9381F67143500DDB060 /* ValidTournament.json */,
+				11FEB93A1F67190600DDB060 /* JsonLoader.swift */,
+				11FEB93E1F67202E00DDB060 /* ParticipationTests.swift */,
 			);
 			path = "Tournament ManagerTests";
 			sourceTree = "<group>";
@@ -310,6 +331,7 @@
 				11FEB9311F666F5000DDB060 /* Login.storyboard in Resources */,
 				11F824D71F6310E5007751F1 /* LaunchScreen.storyboard in Resources */,
 				11FEB92E1F666F4200DDB060 /* Tournaments.storyboard in Resources */,
+				11FEB9451F67274800DDB060 /* ReadMe.rtf in Resources */,
 				11F824D41F6310E5007751F1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +340,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11FEB93D1F671FCE00DDB060 /* InvalidTournament.json in Resources */,
+				11FEB9391F67143500DDB060 /* ValidTournament.json in Resources */,
+				11FEB9431F67221400DDB060 /* ValidParticipation.json in Resources */,
+				11FEB9421F67221400DDB060 /* InvalidParticipation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +378,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11F824E21F6310E5007751F1 /* Tournament_ManagerTests.swift in Sources */,
+				11FEB93B1F67190600DDB060 /* JsonLoader.swift in Sources */,
+				11FEB93F1F67202E00DDB060 /* ParticipationTests.swift in Sources */,
+				11F824E21F6310E5007751F1 /* TournamentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

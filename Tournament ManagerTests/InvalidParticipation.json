@@ -1,0 +1,9 @@
+{
+  "data": {
+    "id": "0f0f2a47-9d2e-4ff3-bbb8-cb92421254ed",
+    "type": "participation",
+    "links": {
+      "self": "http://example.com/api/v1/participation/0f0f2a47-9d2e-4ff3-bbb8-cb92421254ed"
+    }
+  }
+}

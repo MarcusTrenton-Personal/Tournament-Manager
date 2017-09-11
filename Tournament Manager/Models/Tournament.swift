@@ -11,7 +11,6 @@ import os.log
 
 struct Tournament {
     let name: String
-    let entryMessage: String
     let createdAt: Date
     let id: UUID
     let enterUrl: URL
@@ -22,10 +21,9 @@ struct Tournament {
     
     init(json: [String: AnyObject]) throws {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-
+        
         guard let attributes = json["attributes"],
             let createdAtString = attributes["created_at"] as? String,
-            let entryMessage = attributes["entry_message"] as? String,
             let name: String = attributes["name"] as? String,
             let createdAt = dateFormatter.date(from: createdAtString),
             let idString: String = json["id"] as? String,
@@ -42,7 +40,6 @@ struct Tournament {
         }
         
         self.name = name
-        self.entryMessage = entryMessage
         self.createdAt = createdAt
         self.id = id
         self.enterUrl = enterUrl
