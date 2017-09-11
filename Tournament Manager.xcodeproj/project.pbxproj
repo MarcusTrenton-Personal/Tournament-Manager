@@ -30,6 +30,7 @@
 		11FEB9421F67221400DDB060 /* InvalidParticipation.json in Resources */ = {isa = PBXBuildFile; fileRef = 11FEB9401F67221400DDB060 /* InvalidParticipation.json */; };
 		11FEB9431F67221400DDB060 /* ValidParticipation.json in Resources */ = {isa = PBXBuildFile; fileRef = 11FEB9411F67221400DDB060 /* ValidParticipation.json */; };
 		11FEB9451F67274800DDB060 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 11FEB9441F67274800DDB060 /* ReadMe.rtf */; };
+		11FEB9471F674CD100DDB060 /* MockServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FEB9461F674CD100DDB060 /* MockServerConnection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		11FEB9401F67221400DDB060 /* InvalidParticipation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidParticipation.json; sourceTree = "<group>"; };
 		11FEB9411F67221400DDB060 /* ValidParticipation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidParticipation.json; sourceTree = "<group>"; };
 		11FEB9441F67274800DDB060 /* ReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = ReadMe.rtf; sourceTree = "<group>"; };
+		11FEB9461F674CD100DDB060 /* MockServerConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockServerConnection.swift; path = Network/MockServerConnection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				11F825051F637080007751F1 /* IServerConnection.swift */,
 				11F825061F637080007751F1 /* RestServerConnection.swift */,
 				11F825091F6370DF007751F1 /* ServerConnectionContainer.swift */,
+				11FEB9461F674CD100DDB060 /* MockServerConnection.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				11FEB92C1F666F4200DDB060 /* TournamentController.swift in Sources */,
 				11F8250A1F6370DF007751F1 /* ServerConnectionContainer.swift in Sources */,
 				11FEB9371F66FE6100DDB060 /* Popups.swift in Sources */,
+				11FEB9471F674CD100DDB060 /* MockServerConnection.swift in Sources */,
 				11FEB9341F66702700DDB060 /* Participation.swift in Sources */,
 				11FEB92D1F666F4200DDB060 /* TournamentDetailController.swift in Sources */,
 				11202B311F666B6900847DD0 /* Tournament.swift in Sources */,

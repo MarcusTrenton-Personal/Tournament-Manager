@@ -17,17 +17,17 @@ protocol IServerConnection {
     //Key LoginResultKey.resultCode with value type EndpointResult
     func login()
     
-    //Responds with notification ServerNotificationName.getAllTournamentsResult with data:
+    //Responds with notification ServerNotificationName.GetAllTournamentsResult with data:
     //Key GetAllTournamentsResultKey.resultCode with value type EndpointResult
     //Key GetAllTournamentsResultKey.tournaments with value type [Tournament]?, which is nil if call fails
     func getAllTournaments()
     
-    //Responds with notification ServerNotificationName.getTournamentResult with data:
+    //Responds with notification ServerNotificationName.GetTournamentResult with data:
     //Key GetTournamentResultKey.resultCode with value type EndpointResult
     //Key GetTournamentResultKey.tournament with value type Tournament?, which is nil if call fails
     func getTournament(url: URL)
     
-    //Responds with notification ServerNotificationName.garticipateInTournamentResult with data:
+    //Responds with notification ServerNotificationName.ParticipateInTournamentResult with data:
     //Key ParticipateInTournamentResultKey.resultCode with value type EndpointResult
     //Key ParticipateInTournamentResultKey.participation with value type Participation
     func participateInTournament(url: URL)

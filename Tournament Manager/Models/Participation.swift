@@ -18,6 +18,14 @@ struct Participation {
     
     let dateFormatter = DateFormatter()
     
+    init(id: UUID, type: String, entryMessage: String?, createdAt: Date, detailsUrl: URL) {
+        self.id = id
+        self.type = type
+        self.entryMessage = entryMessage
+        self.createdAt = createdAt
+        self.detailsUrl = detailsUrl
+    }
+    
     init(json: [String: AnyObject]) throws {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 

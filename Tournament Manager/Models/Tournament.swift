@@ -19,6 +19,15 @@ struct Tournament {
     
     let dateFormatter = DateFormatter()
     
+    init(id: UUID, name: String, type: String, createdAt: Date, enterUrl: URL, detailsUrl: URL) {
+        self.id = id
+        self.name = name
+        self.type = type
+        self.createdAt = createdAt
+        self.enterUrl = enterUrl
+        self.detailsUrl = detailsUrl
+    }
+    
     init(json: [String: AnyObject]) throws {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         

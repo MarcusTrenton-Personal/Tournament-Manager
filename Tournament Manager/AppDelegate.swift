@@ -16,8 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        let useMockServer = ProcessInfo.processInfo.arguments.contains("USE_MOCK_SERVER")
         let host = Bundle.main.object(forInfoDictionaryKey: "HOST") as? String
-        let serverConnection = RestServerConnection(hostname: host!)
+        let serverConnection: IServerConnection = useMockServer ?
+            MockServerConnection() :
+            RestServerConnection(hostname: host!)
         
         //Setup all singletons
         ServerConnectionContainer.initialize(serverConnection: serverConnection)
