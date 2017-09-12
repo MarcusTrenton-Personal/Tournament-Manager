@@ -12,6 +12,8 @@ import os.log
 //The Login storyboard is separate for easier future expansion of the login and new user flow
 class LoginController: UIViewController {
     
+    var loginObserverOption: NSObjectProtocol?
+    
     //Using viewDidAppear instead of viewDidLoad to support changing scenes
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -19,12 +21,23 @@ class LoginController: UIViewController {
         loginAsync()
     }
     
+    deinit {
+        removeObservers()
+    }
+    
     private func addObservers() {
         let nc = NotificationCenter.default
-        nc.addObserver(forName: Notification.Name.LoginResult,
+        loginObserverOption = nc.addObserver(forName: Notification.Name.LoginResult,
                        object: nil,
                        queue: nil,
                        using: onLoginResult)
+    }
+    
+    private func removeObservers() {
+        if let loginObserver = loginObserverOption {
+            let nc = NotificationCenter.default
+            nc.removeObserver(loginObserver)
+        }
     }
     
     private func loginAsync() {

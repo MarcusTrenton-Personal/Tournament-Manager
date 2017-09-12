@@ -12,6 +12,7 @@ import os.log
 class TournamentController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tournaments: [Tournament] = []
+    var tournamentObserverOption: NSObjectProtocol?
     
     @IBOutlet weak var table: UITableView!
 
@@ -21,12 +22,23 @@ class TournamentController: UIViewController, UITableViewDataSource, UITableView
         getAllTournamentsAsync()
     }
     
+    deinit {
+        removeObservers()
+    }
+    
     private func addObservers() {
         let nc = NotificationCenter.default
-        nc.addObserver(forName: Notification.Name.GetAllTournamentsResult,
+        tournamentObserverOption = nc.addObserver(forName: Notification.Name.GetAllTournamentsResult,
                        object: nil,
                        queue: nil,
                        using: onGetAllTournamentsResult)
+    }
+    
+    private func removeObservers() {
+        if let tournamentObserver = tournamentObserverOption {
+            let nc = NotificationCenter.default
+            nc.removeObserver(tournamentObserver)
+        }
     }
     
     private func getAllTournamentsAsync() {

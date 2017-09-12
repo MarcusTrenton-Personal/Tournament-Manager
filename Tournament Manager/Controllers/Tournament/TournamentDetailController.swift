@@ -15,6 +15,8 @@ class TournamentDetailController: UIViewController {
     
     var dateFormatter: DateFormatter = DateFormatter()
     var tournament: Tournament?
+    var tournamentObserverOption: NSObjectProtocol?
+    var participantObserverOption: NSObjectProtocol?
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var createdAt: UILabel!
@@ -34,16 +36,31 @@ class TournamentDetailController: UIViewController {
         getTournamentAsync()
     }
     
+    deinit {
+        removeObservers()
+    }
+    
     private func addObservers() {
         let nc = NotificationCenter.default
-        nc.addObserver(forName: Notification.Name.GetTournamentResult,
+        tournamentObserverOption = nc.addObserver(forName: Notification.Name.GetTournamentResult,
                        object: nil,
                        queue: nil,
                        using: onGetTournamentResult)
-        nc.addObserver(forName: Notification.Name.ParticipateInTournamentResult,
+        participantObserverOption = nc.addObserver(forName: Notification.Name.ParticipateInTournamentResult,
                        object: nil,
                        queue: nil,
                        using: onParticipateInTournamentResult)
+    }
+    
+    private func removeObservers() {
+        let nc = NotificationCenter.default
+        if let tournamentObserver = tournamentObserverOption {
+            nc.removeObserver(tournamentObserver)
+        }
+        if let participantObserver = participantObserverOption {
+            let nc = NotificationCenter.default
+            nc.removeObserver(participantObserver)
+        }
     }
     
     private func getTournamentAsync() {
